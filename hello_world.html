@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World - 現代化網頁範例</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center font-sans text-white">
+
+    <div class="text-center p-8 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-2xl animate-fade-in">
+        <h1 id="main-title" class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+            Hello World
+        </h1>
+        <p id="sub-text" class="text-lg md:text-xl text-indigo-100 mb-8">
+            歡迎來到我的第一個 HTML5 網頁
+        </p>
+        
+        <button 
+            onclick="changeGreeting()"
+            class="px-8 py-3 bg-white text-indigo-600 font-semibold rounded-full hover:bg-indigo-50 transition-colors duration-300 shadow-lg active:scale-95"
+        >
+            點擊互動
+        </button>
+
+        <div id="message-box" class="mt-6 h-6 text-sm font-medium text-indigo-200"></div>
+    </div>
+
+    <script>
+        // JavaScript 互動邏輯
+        const greetings = [
+            "你好，世界！",
+            "Hello World!",
+            "こんにちは世界",
+            "Bonjour le monde",
+            "Hola Mundo"
+        ];
+        let index = 0;
+
+        function changeGreeting() {
+            const title = document.getElementById('main-title');
+            const messageBox = document.getElementById('message-box');
+            
+            // 更新索引
+            index = (index + 1) % greetings.length;
+            
+            // 更新文字
+            title.innerText = greetings[index];
+            
+            // 顯示小訊息
+            messageBox.innerText = `語言已切換：${greetings[index]}`;
+            
+            // 簡單的點擊回饋效果
+            title.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                title.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // 初始化時在控制台打印訊息
+        window.onload = () => {
+            console.log("網頁已載入完成！");
+        };
+    </script>
+</body>
+</html>
